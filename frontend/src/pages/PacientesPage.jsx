@@ -193,7 +193,10 @@ function PacientesPage() {
               id="paciente-nome"
               name="nome"
               value={form.nome}
-              onChange={(event) => setForm((prev) => ({ ...prev, nome: event.target.value }))}
+              onChange={(event) => {
+                const valor = event.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, "");
+                setForm((prev) => ({ ...prev, nome: valor }));
+              }}
               disabled={submitting}
             />
           </div>
@@ -219,9 +222,10 @@ function PacientesPage() {
                 id="paciente-carteirinha"
                 name="carteirinha"
                 value={form.carteirinha}
-                onChange={(event) =>
-                  setForm((prev) => ({ ...prev, carteirinha: event.target.value }))
-                }
+                onChange={(event) => {
+                  const valor = event.target.value.replace(/\D/g, "");
+                  setForm((prev) => ({ ...prev, carteirinha: valor }));
+                }}
                 disabled={submitting}
               />
             </div>

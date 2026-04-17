@@ -49,12 +49,12 @@ class Router
             $params = [];
 
             foreach ($matches as $key => $value) {
-                if (is_string($key)) {
+                if (\is_string($key)) {
                     $params[$key] = $value;
                 }
             }
 
-            call_user_func($route['handler'], $params);
+            \call_user_func($route['handler'], $params);
             return;
         }
 

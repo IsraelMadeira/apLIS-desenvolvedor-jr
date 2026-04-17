@@ -5,7 +5,7 @@ export const PHP_API_URL =
   import.meta.env.VITE_PHP_API_URL || "http://localhost:8001";
 
 export const API_AUTH_USERNAME =
-  import.meta.env.VITE_API_AUTH_USERNAME || "admin";
+  import.meta.env.VITE_API_AUTH_USERNAME;
 
 export const API_AUTH_PASSWORD =
-  import.meta.env.VITE_API_AUTH_PASSWORD || "admin123";
+  import.meta.env.VITE_API_AUTH_PASSWORD;

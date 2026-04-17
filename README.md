@@ -1,242 +1,98 @@
-# Teste Tecnico Fullstack - Clinica Integrada
-
-Entrega final do teste pratico para vaga de Desenvolvedor Junior.
-
-## 1) Objetivo do teste
-
-Construir uma aplicacao fullstack simples com:
-
-- Frontend React (SPA)
-- Backend PHP para medicos
-- Backend Node.js para pacientes
-- Banco MySQL compartilhado
-
-Requisitos minimos do enunciado:
-
-- PHP: GET e POST de medicos
-- Node: GET e POST de pacientes
-- Frontend com sidebar (Medicos e Pacientes), listagem e cadastro dos dois dominios
-
-Desafios extras sugeridos:
-
-- CRUD completo
-- Preparacao para multi linguagem
-
-## 2) Escopo entregue
-
-### Requisitos obrigatorios
-
-- Frontend React SPA integrado com as duas APIs
-- Backend PHP em arquitetura MVC
-- Backend Node em arquitetura MVC
-- MySQL compartilhado para os dois backends
-- Listagem e cadastro para medicos e pacientes
-
-### Diferenciais mantidos
-
-- CRUD completo para medicos e pacientes
-- JWT nos dois backends
-- Contrato JSON padronizado
-- Tratamento global de erros
-- i18n preparado no frontend com pt-BR como padrao
-
-## 3) Arquitetura
-
-Fluxo geral:
-
-1. Frontend chama a API de dominio (PHP para medicos, Node para pacientes)
-2. Rotas delegam para controllers
-3. Controllers chamam services
-4. Services aplicam validacoes e regras
-5. Models executam queries no MySQL com prepared statements
-6. API responde JSON padronizado
-
-## 4) Estrutura do projeto
-
-- frontend: SPA React
-- backend-node: API de pacientes
-- backend-php: API de medicos
-- database: schema SQL compartilhado
-- docs: documentacao de arquitetura
-
-## 5) Banco de dados compartilhado
-
-Arquivo: database/schema.sql
-
-Tabelas:
-
-- medicos
-- pacientes
-
-Constraints principais:
-
-- medicos: UNIQUE (crm, uf_crm)
-- pacientes: UNIQUE (carteirinha), UNIQUE (cpf)
-- checks de formato para uf_crm e cpf
-
-## 6) Contrato JSON padrao
-
-Sucesso:
-
-{
-  "success": true,
-  "message": "...",
-  "data": {}
-}
-
-Erro:
-
-{
-  "success": false,
-  "message": "...",
-  "errors": []
-}
-
-## 7) APIs e autenticacao
-
-### Backend PHP (Medicos)
-
-Base URL: http://localhost:8001
-
-- GET /health (publico)
-- POST /auth/login (publico)
-- GET /api/v1/medicos (publico)
-- GET /api/v1/medicos/{id} (publico)
-- POST /api/v1/medicos (protegido, role admin)
-- PUT /api/v1/medicos/{id} (protegido, role admin)
-- DELETE /api/v1/medicos/{id} (protegido, role admin)
-
-### Backend Node (Pacientes)
-
-Base URL: http://localhost:3001
-
-- GET /health (publico)
-- POST /auth/login (publico)
-- GET /api/v1/pacientes (publico)
-- GET /api/v1/pacientes/{id} (publico)
-- POST /api/v1/pacientes (protegido, role admin)
-- PUT /api/v1/pacientes/{id} (protegido, role admin)
-- DELETE /api/v1/pacientes/{id} (protegido, role admin)
-
-### Observacao sobre o enunciado
-
-Foi mantida a correcao da inconsistencia original:
-
-- Node correto: POST /api/v1/pacientes
-
-## 8) Variaveis de ambiente
-
-Copiar os exemplos para .env:
-
-- .env.example (raiz, referencia compartilhada)
-- backend-node/.env.example
-- backend-php/.env.example
-- frontend/.env.example
-
-Variaveis importantes:
-
-- JWT_SECRET, JWT_ISSUER, JWT_AUDIENCE
-- AUTH_USERNAME, AUTH_PASSWORD, AUTH_ROLE
-- VITE_API_AUTH_USERNAME, VITE_API_AUTH_PASSWORD
-
-Importante:
-
-- Operacoes de escrita usam JWT
-- Frontend faz login automatico para obter token antes de POST/PUT/DELETE
-
-## 9) Setup e execucao local
-
-Pre-requisitos:
-
-- Node.js 18+
-- npm 9+
-- MySQL 8+
-- PHP 8.1+
-- Composer 2+
-
-### 9.1 Criar banco
-
-Executar:
-
-- database/schema.sql
-
-### 9.2 Backend Node
-
-1. cd backend-node
-2. npm install
-3. npm run dev
-
-### 9.3 Backend PHP
-
-1. cd backend-php
-2. composer install
-3. php -S localhost:8001 router.php
-
-### 9.4 Frontend
-
-1. cd frontend
-2. npm install
-3. npm run dev
-
-Frontend:
-
-- http://localhost:5173
-
-## 10) Validacao manual sugerida
-
-1. Health checks:
-
-- GET http://localhost:3001/health
-- GET http://localhost:8001/health
-
-2. Listagens publicas:
-
-- GET /api/v1/medicos
-- GET /api/v1/pacientes
-
-3. Login para obter token:
-
-- POST /auth/login com body {"username":"admin","password":"admin123"}
-
-4. CRUD com token:
-
-- Usar Authorization: Bearer <token> em POST/PUT/DELETE
-
-5. Frontend:
-
-- Abrir pagina Medicos e Pacientes
-- Validar listagem, cadastro, edicao e exclusao
-- Validar estados de loading, erro e vazio
-
-## 11) Multi linguagem
-
-Estrutura i18n pronta em:
-
-- frontend/src/i18n/I18nProvider.jsx
-- frontend/src/i18n/useI18n.js
-- frontend/src/i18n/messages/pt-BR.js
-
-Idioma padrao atual: pt-BR.
-
-## 12) Seguranca e boas praticas
-
-- Prepared statements (PDO e mysql2)
-- Validacoes no service layer
-- Middleware de erro global
-- JWT com issuer/audience
-- Guardas de seguranca para evitar segredos e credenciais padrao em producao
-
-## 13) Checklist final do enunciado
-
-- Frontend React SPA: atendido
-- Backend PHP para medicos: atendido
-- Backend Node para pacientes: atendido
-- Banco MySQL compartilhado: atendido
-- GET/POST minimos (medicos/pacientes): atendido
-- Sidebar com Medicos/Pacientes: atendido
-- Telas de listagem e cadastro: atendido
-- Integracao ponta a ponta: atendido
-- Tratamento de erros: atendido
-- Documentacao: atendido
-- CRUD completo (extra): atendido
-- Multi linguagem preparado (extra): atendido
+# Comunicação
+
+Toda a comunicação a respeito deste teste deve ser feita através do email thiago.barros@prestadores.aplis.inf.br. 
+
+# Entrega
+
+- O prazo para entrega do teste é de 10 dias após seu envio ao candidato.
+- O teste pode ser entregue parcialmente, porém a porcentagem de aderencia ao escopo total será avaliada.
+
+# Recomendações
+
+- Recomendamos uso de arquitetura MVC em ambos os backends.
+- Recomendamos que o pull request tem a menor quantidade possível de arquivos para cumprir o desafio.
+
+## Teste Prático — Desenvolvedor Junior
+
+- Para iniciar crie um fork deste repositório para seu perfil.
+- Para entregar crie uma solicitação pull request.
+
+O teste consiste no desenvolvimento de uma aplicação fullstack simples, composta por um frontend em React (SPA), dois backends independentes e um banco de dados MySQL compartilhado.
+
+O backend em PHP será responsável pelo cadastro e listagem de médicos, enquanto o backend em Node.js será responsável pelo cadastro e listagem de pacientes. Cada backend deve expor endpoints REST para criação e consulta de seus respectivos dados, garantindo que as respostas estejam em formato JSON consistente.
+
+O primeiro backend deverá ser desenvolvido em PHP e contemplar as seguintes rotas:
+- `GET /api/v1/medicos`: obtém todos os médicos retornando conforme exemplo abaixo: 
+
+```json
+    [
+        {
+            "id": 1,
+            "nome": "João da Silva",
+            "CRM": "123456",
+            "UFCRM": "CE"
+        },
+        {
+            "id": 2,
+            "nome": "Francisco Pereira",
+            "CRM": "876543",
+            "UFCRM": "CE"
+        }
+    ]
+```
+
+- `POST /api/v1/medicos`: cria um novo médico enviando o body do exemplo abaixo e retornando a mensagem "Médico criado com sucesso".
+
+```json
+    {
+        "id": 1,
+        "nome": "João da Silva",
+        "CRM": "123456",
+        "UFCRM": "CE"
+    }
+```
+
+O segundo backend deverá ser desenvolvido em NodeJS (JavaScript) e contemplar as seguintes rotas:
+- `GET /api/v1/pacientes`: obtém todos os pacientes retornando conforme exemplo abaixo: 
+
+```json
+    [
+        {
+            "id": 1,
+            "nome": "João da Silva",
+            "dataNascimento": "2026-01-01",
+            "carteirinha": "123456",
+            "cpf": "12345678909"
+        },
+        {
+            "id": 2,
+            "nome": "Francisco Pereira",
+            "carteirinha": "876543",
+            "cpf": "12345678901"
+        }
+    ]
+```
+
+- `POST /api/v1/pacientes`: cria um novo paciente enviando o body do exemplo abaixo e retornando a mensagem "Paciente criado com sucesso".
+
+```json
+    {
+        "id": 1,
+        "nome": "João da Silva",
+        "dataNascimento": "2026-01-01",
+        "carteirinha": "123456",
+        "cpf": "12345678909"
+    },
+```
+
+O frontend deve consumir ambas as APIs, permitindo visualizar listas de médicos e pacientes separadamente, além de possibilitar o cadastro de novos registros. O candidato deverá organizar o projeto em três partes (frontend, backend Node e backend PHP), garantir a integração entre as camadas e manter o código legível e funcional.
+
+A tela deve mostrar um menu sidebar à esquerda com duas opções (Médicos e Pacientes), que quando clicado abre a tela de listagem e criação dos registros.
+
+A avaliação considerará principalmente o funcionamento ponta a ponta da aplicação, a correta integração entre os serviços, a organização do código e, como diferencial, boas práticas, tratamento de erros e clareza na documentação. O tempo estimado para conclusão é de 6 a 10 horas.
+
+
+# Desafio extra 
+
+- Crie as demais operações CRUD
+- Deixe o projeto pronto para multi linguagem, tanto no backend quanto no frontend.

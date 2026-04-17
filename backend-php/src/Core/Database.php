@@ -19,10 +19,10 @@ class Database
         $host = self::env('DB_HOST', 'localhost');
         $port = self::env('DB_PORT', '3306');
         $database = self::env('DB_NAME', 'clinica_devjr');
-        $user = self::env('DB_USER', 'root');
-        $password = self::env('DB_PASSWORD', '');
+        $user = self::env('DB_USER', 'mysql');
+        $password = self::env('DB_PASSWORD', 'root');
 
-        $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $database);
+        $dsn = \sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4', $host, $port, $database);
 
         self::$connection = new PDO($dsn, $user, $password, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

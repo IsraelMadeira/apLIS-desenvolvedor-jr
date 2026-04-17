@@ -172,7 +172,10 @@ function MedicosPage() {
               id="medico-nome"
               name="nome"
               value={form.nome}
-              onChange={(event) => setForm((prev) => ({ ...prev, nome: event.target.value }))}
+              onChange={(event) => {
+                const valor = event.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, "");
+                setForm((prev) => ({ ...prev, nome: valor }));
+              }}
               disabled={submitting}
             />
           </div>
@@ -184,23 +187,40 @@ function MedicosPage() {
                 id="medico-crm"
                 name="crm"
                 value={form.crm}
-                onChange={(event) => setForm((prev) => ({ ...prev, crm: event.target.value }))}
+                onChange={(event) => {
+                  const valor = event.target.value.replace(/\D/g, "");
+                  setForm((prev) => ({ ...prev, crm: valor }));
+                }}
                 disabled={submitting}
               />
             </div>
 
-            <div className="field">
+            <div className="field uf-field">
               <label htmlFor="medico-ufcrm">{t("medicoUfCrm")}</label>
-              <input
+
+              <select
                 id="medico-ufcrm"
                 name="ufCRM"
-                maxLength={2}
+                required
                 value={form.ufCRM}
                 onChange={(event) =>
-                  setForm((prev) => ({ ...prev, ufCRM: event.target.value.toUpperCase() }))
+                  setForm((prev) => ({ ...prev, ufCRM: event.target.value }))
                 }
                 disabled={submitting}
-              />
+                className="uf-select"
+              >
+                <option value="">UF</option>
+
+                {[
+                  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
+                  "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
+                  "RS", "RO", "RR", "SC", "SP", "SE", "TO"
+                ].map((uf) => (
+                  <option key={uf} value={uf}>
+                    {uf}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
